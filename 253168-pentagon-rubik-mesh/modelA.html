@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <a href="/" aria-current="page">Home</a>
+    <h1>Model A - Pentagon Rubik Mesh</h1>
+    <script>
+        // ... WebGL setup (context, shaders, buffers, etc.) ...
+
+        // Example rotation around an axis (assuming 'rotationAxis' and 'angle' are defined)
+        function rotateGroup(vertexIndices, rotationAxis, angle) {
+            let rotationMatrix = mat4.create();
+            mat4.rotate(rotationMatrix, rotationMatrix, angle, rotationAxis);
+
+            for (let i = 0; i < vertexIndices.length; i++) {
+                let vertexIndex = vertexIndices[i];
+                let vertex = vec3.fromValues(vertices[vertexIndex * 3], vertices[vertexIndex * 3 + 1], vertices[vertexIndex * 3 + 2]);
+
+                vec3.transformMat4(vertex, vertex, rotationMatrix);
+
+                vertices[vertexIndex * 3] = vertex[0];
+                vertices[vertexIndex * 3 + 1] = vertex[1];
+                vertices[vertexIndex * 3 + 2] = vertex[2];
+            }
+
+            // ... Update WebGL vertex buffer ...
+        }
+
+        // ... Rendering loop ...
+    </script>
+</body>
+
+</html>
